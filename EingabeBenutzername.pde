@@ -34,7 +34,6 @@ void zeichneEingabeName() {
 
 void benutzerEingabe(char buchstabe) {
     
-  println(eingabeNutzername.length);
     if(buchstabe != BACKSPACE && buchstabe != ENTER && buchstabe != SHIFT && buchstabe != ESC && buchstabe != TAB && buchstabe != DELETE) {
       if(eingabeNutzername.length < 12) {
         eingabeNutzername = append(eingabeNutzername, buchstabe);
@@ -47,7 +46,7 @@ void benutzerEingabe(char buchstabe) {
     }
     eingabe = uebersetzeCharArrayZuString(eingabeNutzername);
     
-    if(buchstabe == ENTER) {        
+    if(buchstabe == ENTER) {
         benutzerSpeichern();
         println(benutzerName);
     }
@@ -57,7 +56,7 @@ void benutzerSpeichern() {
   if(eingabe != "") {
     benutzerName = eingabe;
     zeichneSpielfeld();
-  } 
+  }
   else {
     println("Bitte Benutzernamen eingeben!");
   }
