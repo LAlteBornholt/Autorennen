@@ -1,4 +1,4 @@
-float spielerX = 420, spielerY = 445;
+float spielerX = 420, spielerXletztePosition, spielerY = 445;
 String benutzerName = "";
 
 void setup() {
@@ -38,14 +38,20 @@ void keyPressed() {
       spielerY += 10;
     }
     else if(keyCode == LEFT) {
+      spielerXletztePosition = spielerX;
       spielerX -= 10;
     }
     else if(keyCode == RIGHT) {
+      spielerXletztePosition = spielerX;
       spielerX += 10;
     }
     
+    //Messagebox bei abgelaufener Zeit
+    if(key == '1') {
+      javax.swing.JOptionPane.showMessageDialog(null, "Sie waren zu langsam!");
+    }
+    
     if(benutzerName == "") {
-      //Benutzereingabe
       benutzerEingabe(key);
     }
 }

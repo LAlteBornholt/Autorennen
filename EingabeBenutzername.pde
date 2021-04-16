@@ -24,8 +24,8 @@ void zeichneEingabeName() {
   
   //Speichern Button
   fill(164, 49, 49);
-  strokeWeight(3);
-  rect(570, 280, 100, 30);
+  strokeWeight(2);
+  rect(570, 280, 100, 30, 5);
   strokeWeight(1);
   fill(0);
   textSize(15);
