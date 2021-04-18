@@ -54,7 +54,11 @@ void benutzerEingabe(char buchstabe) {
 
 void benutzerSpeichern() {
   if(eingabe != "") {
-    benutzerName = eingabe;
+    benutzerName = eingabe; //<>//
+    eingabe = "";
+    while(eingabeNutzername.length > 0) {
+      eingabeNutzername = shorten(eingabeNutzername);
+    }
     zeichneSpielfeld();
   }
   else {

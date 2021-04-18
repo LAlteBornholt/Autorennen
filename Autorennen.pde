@@ -1,5 +1,9 @@
-float spielerX = 420, spielerXletztePosition, spielerY = 445;
+float spielerAnfangsPositionX = 420, spielerAnfangsPositionY = 445;
+float spielerX = spielerAnfangsPositionX, spielerY = spielerAnfangsPositionY, spielerXletztePosition;
 String benutzerName = "";
+boolean stoppuhrStarten = false, spielEnde = false;
+String[] bestenliste = new String[0];
+float[] bestenlisteZeit = new float[0];
 
 void setup() {
   size(800,600);
@@ -11,10 +15,15 @@ void draw() {
     zeichneEingabeName();
   }
   else {
-    spielStart();
-    fill(200, 0 , 0);
-    rect(spielerX, spielerY, 15, 15);
-  }  
+    if(!spielEnde) {
+      spiel();
+      fill(200, 0 , 0);
+      rect(spielerX, spielerY, 15, 15);
+    }
+    else {
+      zeichneEndeUI();
+    }
+  }
 }
 
 void zeichneSpielfeld() {
@@ -24,42 +33,49 @@ void zeichneSpielfeld() {
   fill(251, 153, 51);
   rect(200, 200, 400, 200);
   fill(0);
-  rect(width/2-5, 400, 10, 100);
+  rect((width/2)-5, 400, 10, 100);
 }
 
-
 void keyPressed() {
-
   //Spielersteuerung
   if(keyCode == UP) {
       spielerY -= 10;
-    }
-    else if(keyCode == DOWN) {
-      spielerY += 10;
-    }
-    else if(keyCode == LEFT) {
-      spielerXletztePosition = spielerX;
-      spielerX -= 10;
-    }
-    else if(keyCode == RIGHT) {
-      spielerXletztePosition = spielerX;
-      spielerX += 10;
-    }
-    
-    //Messagebox bei abgelaufener Zeit
-    if(key == '1') {
-      javax.swing.JOptionPane.showMessageDialog(null, "Sie waren zu langsam!");
-    }
-    
-    if(benutzerName == "") {
-      benutzerEingabe(key);
-    }
+  }
+  else if(keyCode == DOWN) {
+    spielerY += 10;
+  }
+  else if(keyCode == LEFT) {
+    spielerXletztePosition = spielerX;
+    spielerX -= 10;
+  }
+  else if(keyCode == RIGHT) {
+    spielerXletztePosition = spielerX;
+    spielerX += 10;
+  }
+  
+  if(benutzerName == "") {
+    benutzerEingabe(key);
+  }
 }
 
 void mouseClicked() {
   //Benutzer-Speichern Button
-  if(mouseX > 570 && mouseY < 670 && mouseY > 280 && mouseY < 310) {
+  if(mouseX > 570 && mouseX < 670 && mouseY > 280 && mouseY < 310) {
     benutzerSpeichern();
   }
-  
+  //Neustart Button
+  else if(mouseX >= 235 && mouseX <= 335 && mouseY >= 535 && mouseY <= 565) {
+    //Spieler auf Anfangsposition    
+    spielZuruecksetzen();
+    benutzerName = "";
+    
+  }
+  //Ende Button
+  else if(mouseX >= 485 && mouseX <= 585 && mouseY >= 535 && mouseY <= 565) {
+    spielEnde = true;
+    //Programm zurücksetzen
+    //neue Benutzereingabe
+    zeichneSpielfeld();
+    zeichneEingabeName();
+  }
 }
