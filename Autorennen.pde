@@ -78,4 +78,11 @@ void mouseClicked() {
     zeichneSpielfeld();
     zeichneEingabeName();
   }
+  
+  //Verlassen Button
+  if(spielEnde) {
+    if(mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= 535 && mouseY <= 565) {
+      exit();
+    }
+  }
 }

@@ -90,6 +90,11 @@ void zeichneEndeUI() {
     text(bestenliste[i] + ", " + bestenlisteZeit[i], width/2 - 80, textumbruch); //<>//
     textumbruch += 20;
   }
+  fill(164, 49, 49);
+  rect(width/2 - 50, 535, 100, 30, 5);
+  fill(0);
+  textSize(15);
+  text("Verlassen", width/2 - 40, 555);
 }
 
 void sortiereArraysAufsteigend() {
